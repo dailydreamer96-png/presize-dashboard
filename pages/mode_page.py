@@ -25,26 +25,26 @@ def apply_dashboard_style():
       :root {
         --blue:       #1E90FF;
         --blue-dk:    #1270cc;
-        --blue-lt:    #dbeeff;
-        --blue-md:    #93c5fd;
+        --blue-lt:    #1b2638;
+        --blue-md:    #60a5fa;
 
-        --bg:         #e8edf5;
-        --surface:    #f4f7fb;
-        --surface2:   #edf1f8;
-        --sidebar-bg: #1a2744;
+        --bg:         #141922;
+        --surface:    #1b2230;
+        --surface2:   #20293a;
+        --sidebar-bg: #111827;
 
-        --border:     #d0d8e8;
-        --border-strong: #b8c4d8;
+        --border:     #2a3448;
+        --border-strong: #38455f;
 
-        --emerald:    #059669;
-        --emerald-lt: #d1fae5;
-        --rose:       #dc2626;
-        --rose-lt:    #fee2e2;
+        --emerald:    #34d399;
+        --emerald-lt: #064e3b;
+        --rose:       #fb7185;
+        --rose-lt:    #4c0519;
 
-        --ink:        #0f1d35;
-        --ink-mid:    #2d3f5e;
-        --ink-soft:   #4e6080;
-        --ink-faint:  #7a90b0;
+        --ink:        #e8eaf2;
+        --ink-mid:    #cbd5e1;
+        --ink-soft:   #94a3b8;
+        --ink-faint:  #64748b;
       }
 
       html, body, [data-testid="stAppViewContainer"], [data-testid="stMain"] {
@@ -82,7 +82,8 @@ def apply_dashboard_style():
         text-transform: uppercase !important;
       }
 
-      [data-testid="stSidebar"] [data-testid="stSelectbox"] label {
+      [data-testid="stSidebar"] [data-testid="stSelectbox"] label,
+      [data-testid="stSidebar"] [data-testid="stRadio"] label {
         color: #7a9fc8 !important;
         font-size: 0.68rem !important;
         font-weight: 600 !important;
@@ -98,6 +99,28 @@ def apply_dashboard_style():
         font-size: 0.85rem !important;
       }
 
+      [data-testid="stSidebar"] [data-testid="stRadio"] > div {
+        gap: 8px !important;
+      }
+
+      [data-testid="stSidebar"] [data-testid="stRadio"] > div > label {
+        background: #1e2f55 !important;
+        border: 1px solid #2e4070 !important;
+        border-radius: 8px !important;
+        color: #c8d8f0 !important;
+        font-size: 0.82rem !important;
+        font-weight: 500 !important;
+        padding: 8px 14px !important;
+        transition: all 0.15s;
+      }
+
+      [data-testid="stSidebar"] [data-testid="stRadio"] > div > label:has(input:checked) {
+        background: var(--blue) !important;
+        border-color: var(--blue-dk) !important;
+        color: #ffffff !important;
+        font-weight: 600 !important;
+      }
+
       [data-testid="stDataFrame"] {
         background: var(--surface) !important;
         border-radius: 10px !important;
@@ -106,7 +129,7 @@ def apply_dashboard_style():
       }
 
       [data-testid="stDataFrame"] th {
-        background: var(--sidebar-bg) !important;
+        background: #111827 !important;
         color: #ffffff !important;
         font-weight: 700 !important;
         font-size: 0.75rem !important;
@@ -122,14 +145,15 @@ def apply_dashboard_style():
       }
 
       .page-header {
-        background: var(--sidebar-bg);
+        background: var(--surface);
+        border: 1px solid var(--border);
         border-radius: 14px;
-        padding: 26px 32px;
+        padding: 24px 28px;
         margin-bottom: 22px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        box-shadow: 0 4px 16px rgba(15,29,53,0.12);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.14);
       }
 
       .page-header-left {
@@ -140,7 +164,7 @@ def apply_dashboard_style():
 
       .page-header h1 {
         font-family: 'Inter', sans-serif !important;
-        font-size: 2rem !important;
+        font-size: 1.9rem !important;
         font-weight: 800 !important;
         color: #ffffff !important;
         margin: 0 !important;
@@ -153,7 +177,7 @@ def apply_dashboard_style():
       }
 
       .page-header .subtitle {
-        font-size: 1rem !important;
+        font-size: 0.98rem !important;
         color: #b8cce8 !important;
         margin: 0 !important;
         font-weight: 400 !important;
@@ -202,7 +226,7 @@ def apply_dashboard_style():
         border-radius: 10px;
         padding: 18px 22px;
         margin-bottom: 10px;
-        box-shadow: 0 2px 6px rgba(15,29,53,0.06);
+        box-shadow: 0 2px 6px rgba(0,0,0,0.12);
       }
 
       .kpi-label {
@@ -237,7 +261,7 @@ def apply_dashboard_style():
         border: 1px solid var(--border);
         border-radius: 10px;
         padding: 16px 18px;
-        box-shadow: 0 2px 6px rgba(15,29,53,0.05);
+        box-shadow: 0 2px 6px rgba(0,0,0,0.10);
       }
 
       .info-label {
@@ -246,7 +270,8 @@ def apply_dashboard_style():
         text-transform: uppercase;
         letter-spacing: 0.06em;
         color: var(--ink-soft);
-        margin-bottom: 8px;
+        margin-bottom: 6px;
+        margin-top: 8px;
       }
 
       .info-value {
@@ -260,7 +285,7 @@ def apply_dashboard_style():
         display: inline-block;
         background: var(--blue-lt);
         border: 1.5px solid var(--blue-md);
-        color: var(--blue-dk);
+        color: #cfe5ff;
         font-size: 0.78rem;
         font-weight: 600;
         padding: 4px 12px;
@@ -326,22 +351,21 @@ def summarize_boundaries(series):
 
 
 BLUE = "#1E90FF"
-AMBER = "#d97706"
-EMERALD = "#059669"
-ROSE = "#dc2626"
-NAVY = "#1a2744"
-COLOR_SEQ = [BLUE, NAVY, EMERALD, AMBER, ROSE, "#7c3aed", "#0891b2", "#db2777"]
+AMBER = "#1E90FF"
+EMERALD = "#34d399"
+ROSE = "#fb7185"
+COLOR_SEQ = [BLUE, "#60a5fa", "#38bdf8", "#818cf8", "#34d399", "#f472b6"]
 
 PLOT_LAYOUT = dict(
     paper_bgcolor="rgba(0,0,0,0)",
-    plot_bgcolor="#f4f7fb",
-    font=dict(family="Inter, sans-serif", color="#4e6080", size=12),
-    title_font=dict(family="Inter, sans-serif", color="#0f1d35", size=14),
-    xaxis=dict(gridcolor="#d0d8e8", linecolor="#d0d8e8", tickfont=dict(size=11), tickcolor="#7a90b0"),
-    yaxis=dict(gridcolor="#d0d8e8", linecolor="#d0d8e8", tickfont=dict(size=11), tickcolor="#7a90b0"),
+    plot_bgcolor="#1b2230",
+    font=dict(family="Inter, sans-serif", color="#94a3b8", size=12),
+    title_font=dict(family="Inter, sans-serif", color="#e8eaf2", size=14),
+    xaxis=dict(gridcolor="#2a3448", linecolor="#2a3448", tickfont=dict(size=11), tickcolor="#64748b"),
+    yaxis=dict(gridcolor="#2a3448", linecolor="#2a3448", tickfont=dict(size=11), tickcolor="#64748b"),
     margin=dict(l=20, r=20, t=44, b=20),
     hovermode="x unified",
-    legend=dict(bgcolor="rgba(0,0,0,0)", font=dict(size=11, color="#2d3f5e")),
+    legend=dict(bgcolor="rgba(0,0,0,0)", font=dict(size=11, color="#cbd5e1")),
 )
 
 
@@ -365,7 +389,7 @@ st.markdown(
       </div>
       <div class="page-header-right">
         <span class="header-badge">MODE WORKFLOW</span>
-        <span class="header-meta">Grower-specific checking with variety/version reference</span>
+        <span class="header-meta">Defect ↔ Mode swap flow with grower-specific checking</span>
       </div>
     </div>
     """,
@@ -436,7 +460,7 @@ if batches_df is not None:
             )
 
 # ============================================================
-# SIDEBAR FILTERS — V3 STYLE
+# SIDEBAR FILTERS + SWAP FLOW
 # ============================================================
 with st.sidebar:
     st.markdown("### ⚙️ Mode")
@@ -479,6 +503,15 @@ with st.sidebar:
         key="mode_version_selector"
     )
 
+    st.markdown("#### Workflow Direction")
+    selected_direction = st.radio(
+        "Direction",
+        ["Defect → Mode", "Mode → Defect"],
+        key="mode_direction_selector"
+    )
+
+is_defect_first = selected_direction == "Defect → Mode"
+
 # ============================================================
 # EXACT SELECTION + REFERENCE POOL
 # ============================================================
@@ -519,6 +552,29 @@ with k3:
 with k4:
     st.markdown(kpi_html("Unique Modes", f"{unique_modes:,}"), unsafe_allow_html=True)
 
+# make the 2 datasets visible
+s1, s2 = st.columns(2)
+with s1:
+    st.markdown(
+        kpi_html(
+            "Exact Selection Rows",
+            f"{len(filtered_mode):,}",
+            "current grower + variety + version",
+            "neu",
+        ),
+        unsafe_allow_html=True,
+    )
+with s2:
+    st.markdown(
+        kpi_html(
+            "Reference Pool Rows",
+            f"{len(variety_pool):,}",
+            "same variety + version across growers",
+            "neu",
+        ),
+        unsafe_allow_html=True,
+    )
+
 st.markdown("---")
 
 # ============================================================
@@ -545,32 +601,31 @@ with top_l:
             defects = batch_sel[defect_cols].melt(value_name="defect")["defect"].dropna().astype(str).str.strip()
             defects = defects[defects != ""]
             if not defects.empty:
-                top_defect_tags = defects.value_counts().head(8).index.tolist()
+                top_defect_tags = defects.value_counts().head(12).index.tolist()
 
     grower_text = selected_mode_grower if selected_mode_grower != "All growers" else "All growers"
     variety_text = selected_mode_variety if selected_mode_variety != "All varieties" else "All varieties"
     version_text = selected_version if selected_version != "All versions" else "All versions"
 
-    tags_html = "".join([f'<span class="insight-tag">{t}</span>' for t in top_defect_tags]) if top_defect_tags else '<span class="insight-tag">No defects recorded</span>'
+    st.markdown('<div class="info-card">', unsafe_allow_html=True)
+    st.markdown('<div class="info-label">Variety</div>', unsafe_allow_html=True)
+    st.write(variety_text)
 
-    st.markdown(
-        f"""
-        <div class="info-card">
-            <div class="info-label">Variety</div>
-            <div class="info-value">{variety_text}</div>
+    st.markdown('<div class="info-label">Grower</div>', unsafe_allow_html=True)
+    st.write(grower_text)
 
-            <div class="info-label">Grower</div>
-            <div class="info-value">{grower_text}</div>
+    st.markdown('<div class="info-label">Dec File Version</div>', unsafe_allow_html=True)
+    st.write(version_text)
 
-            <div class="info-label">Dec File Version</div>
-            <div class="info-value">{version_text}</div>
+    st.markdown('<div class="info-label">Recorded Defects (most → least)</div>', unsafe_allow_html=True)
 
-            <div class="info-label">Main Recorded Defects</div>
-            <div>{tags_html}</div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    if top_defect_tags:
+        tags_html = "".join([f'<span class="insight-tag">{t}</span>' for t in top_defect_tags])
+        st.markdown(tags_html, unsafe_allow_html=True)
+    else:
+        st.write("No defects recorded")
+
+    st.markdown('</div>', unsafe_allow_html=True)
 
 with top_r:
     section_title("Top Defects for Selection")
@@ -602,15 +657,29 @@ with top_r:
                 top_defects_mode.columns = ["Defect", "Count"]
 
     if not top_defects_mode.empty:
+        tdm_sorted = top_defects_mode.head(10).sort_values("Count", ascending=True)
         fig_def = px.bar(
-            top_defects_mode.head(8),
+            tdm_sorted,
             x="Count",
             y="Defect",
             orientation="h",
-            color_discrete_sequence=[ROSE]
+            text="Count",
+            color_discrete_sequence=[BLUE]
         )
-        fig_def.update_traces(hovertemplate="%{y}: %{x}<extra></extra>")
-        apply_plot_theme(fig_def, height=320)
+        fig_def.update_traces(
+            textposition="outside",
+            hovertemplate="%{y}<br>Count: %{x}<extra></extra>",
+            cliponaxis=False,
+            name=""
+        )
+        fig_def.update_layout(
+            showlegend=False,
+            xaxis_title=None,
+            yaxis_title=None,
+            yaxis=dict(tickfont=dict(size=12, color="#cbd5e1"))
+        )
+        apply_plot_theme(fig_def, height=max(320, 38 * len(tdm_sorted)))
+        fig_def.update_xaxes(range=[0, tdm_sorted["Count"].max() * 1.15])
         st.plotly_chart(fig_def, use_container_width=True)
     else:
         st.info("No defect data available for the current selection.")
@@ -622,13 +691,15 @@ st.markdown("---")
 # ============================================================
 section_title("Top Adjusted Modes")
 
+st.caption("Reference Boundaries = after-boundaries seen for the same variety + version across growers.")
+
 adjusted_mode_table = pd.DataFrame(
     columns=[
         "Check",
         "Mode",
         "Check Class",
-        "Count",
         "Reference Boundaries",
+        "Count",
         "Sensitivity",
         "Accuracy"
     ]
@@ -638,6 +709,12 @@ if "mode" in filtered_mode.columns and "action" in filtered_mode.columns:
     adjusted = filtered_mode[
         filtered_mode["action"].astype(str).str.lower().str.startswith("a")
     ].copy()
+
+    variety_adjusted = variety_pool.copy()
+    if "action" in variety_adjusted.columns:
+        variety_adjusted = variety_adjusted[
+            variety_adjusted["action"].astype(str).str.lower().str.startswith("a")
+        ]
 
     if not adjusted.empty:
         rows = []
@@ -653,7 +730,13 @@ if "mode" in filtered_mode.columns and "action" in filtered_mode.columns:
                 mode_name = keys
                 check_class = ""
 
-            _, allb = summarize_boundaries(grp["boundary_after"]) if "boundary_after" in grp.columns else ("", "")
+            ref_grp = variety_adjusted.copy()
+            if "mode" in ref_grp.columns:
+                ref_grp = ref_grp[ref_grp["mode"].astype(str) == str(mode_name)]
+            if "check_class" in ref_grp.columns:
+                ref_grp = ref_grp[ref_grp["check_class"].astype(str) == str(check_class)]
+
+            _, ref_b = summarize_boundaries(ref_grp["boundary_after"]) if "boundary_after" in ref_grp.columns else ("", "")
 
             sensitivity_text = ""
             if "sensitivity" in grp.columns:
@@ -669,8 +752,8 @@ if "mode" in filtered_mode.columns and "action" in filtered_mode.columns:
                 "Check": False,
                 "Mode": mode_name,
                 "Check Class": check_class,
+                "Reference Boundaries": ref_b,
                 "Count": len(grp),
-                "Reference Boundaries": allb,
                 "Sensitivity": sensitivity_text,
                 "Accuracy": accuracy_text,
             })
@@ -688,7 +771,9 @@ if not adjusted_mode_table.empty:
         height=320,
         hide_index=True,
         column_config={"Check": st.column_config.CheckboxColumn("Check")},
-        disabled=["Mode", "Check Class", "Count", "Reference Boundaries", "Sensitivity", "Accuracy"]
+        column_order=["Check", "Mode", "Check Class", "Reference Boundaries", "Count", "Sensitivity", "Accuracy"],
+        disabled=["Mode", "Check Class", "Reference Boundaries", "Count", "Sensitivity", "Accuracy"],
+        key="adjusted_mode_editor"
     )
 else:
     st.info("No adjusted mode data available for the current filters.")
@@ -696,9 +781,9 @@ else:
 st.markdown("---")
 
 # ============================================================
-# STEP 1
+# SWAP FLOW
 # ============================================================
-section_title("Step 1 — Select the defect to investigate")
+section_title("Mode Investigation Flow")
 
 available_reason_items = []
 if "reason" in filtered_mode.columns:
@@ -714,132 +799,144 @@ if "reason" in filtered_mode.columns:
     split_reasons = split_reasons[split_reasons != ""]
     available_reason_items = sorted(split_reasons.unique().tolist())
 
-selected_reason = st.selectbox(
-    "Select defect / reason",
-    ["All"] + available_reason_items,
-    key="mode_reason_selector"
-)
+available_mode_items = []
+if "mode" in filtered_mode.columns:
+    available_mode_items = sorted(filtered_mode["mode"].dropna().astype(str).unique().tolist())
 
-related_modes = pd.DataFrame()
+step_l, step_r = st.columns(2)
 
-if selected_reason != "All":
-    reason_related_df = filtered_mode.copy()
+if is_defect_first:
+    with step_l:
+        st.markdown("**Step 1 — Choose a defect / reason**")
 
-    reason_related_df["reason_item"] = (
-        reason_related_df["reason"]
-        .fillna("")
-        .astype(str)
-        .str.split(",")
-    )
-    reason_related_df = reason_related_df.explode("reason_item")
-    reason_related_df["reason_item"] = reason_related_df["reason_item"].astype(str).str.strip()
-
-    reason_related_df = reason_related_df[
-        reason_related_df["reason_item"] == selected_reason
-    ].copy()
-
-    if not reason_related_df.empty:
-        rows = []
-        for keys, grp in reason_related_df.groupby(["mode", "check_class"], dropna=False):
-            mode_name = keys[0]
-            check_class = keys[1]
-
-            _, allb = summarize_boundaries(grp["boundary_after"]) if "boundary_after" in grp.columns else ("", "")
-
-            sensitivity_text = ""
-            if "sensitivity" in grp.columns:
-                sensitivity_vals = sorted(set(grp["sensitivity"].dropna().astype(str)))
-                sensitivity_text = ", ".join(sensitivity_vals)
-
-            accuracy_text = ""
-            if "accuracy" in grp.columns:
-                accuracy_vals = sorted(set(grp["accuracy"].dropna().astype(str)))
-                accuracy_text = ", ".join(accuracy_vals)
-
-            rows.append({
-                "Mode": mode_name,
-                "Check Class": check_class,
-                "Count": len(grp),
-                "Reference Boundaries": allb,
-                "Sensitivity": sensitivity_text,
-                "Accuracy": accuracy_text
-            })
-
-        related_modes = (
-            pd.DataFrame(rows)
-            .sort_values(["Count", "Mode"], ascending=[False, True])
-            .reset_index(drop=True)
+        selected_reason = st.selectbox(
+            "🐛  Defect / Reason",
+            ["Select a defect…"] + available_reason_items,
+            key="m_reason_df",
         )
 
-        st.dataframe(related_modes, use_container_width=True, height=260)
-    else:
-        st.info("No related modes found for this defect / reason.")
-else:
-    st.info("Choose a defect / reason above to see related modes.")
+        related_modes = pd.DataFrame()
+        if selected_reason != "Select a defect…":
+            rdf = filtered_mode.copy()
+            rdf["reason_item"] = rdf["reason"].fillna("").astype(str).str.split(",")
+            rdf = rdf.explode("reason_item")
+            rdf["reason_item"] = rdf["reason_item"].astype(str).str.strip()
+            rdf = rdf[rdf["reason_item"] == selected_reason].copy()
 
-st.markdown("---")
+            if not rdf.empty:
+                rows = []
+                for keys, grp in rdf.groupby(["mode", "check_class"], dropna=False):
+                    _, allb = summarize_boundaries(grp["boundary_after"]) if "boundary_after" in grp.columns else ("", "")
+                    rows.append({
+                        "Mode": keys[0],
+                        "Check Class": keys[1],
+                        "Boundaries": allb,
+                        "Count": len(grp),
+                    })
+                related_modes = pd.DataFrame(rows).sort_values("Count", ascending=False)
 
-# ============================================================
-# STEP 2
-# ============================================================
-section_title("Step 2 — Review what this mode can also detect")
+        if not related_modes.empty:
+            st.dataframe(related_modes, use_container_width=True, height=260, hide_index=True)
+        elif selected_reason != "Select a defect…":
+            st.info("No related modes found.")
+        else:
+            st.info("Pick a defect to see which modes detect it.")
 
-mode_options_from_reason = []
-if not related_modes.empty and "Mode" in related_modes.columns:
-    mode_options_from_reason = related_modes["Mode"].dropna().astype(str).unique().tolist()
+    with step_r:
+        st.markdown("**Step 2 — Pick a mode → see what else it detects**")
 
-selected_related_mode = st.selectbox(
-    "Select a mode from the results",
-    ["All"] + sorted(mode_options_from_reason),
-    key="mode_related_mode_selector"
-)
-
-if selected_related_mode != "All":
-    selected_mode_rows = filtered_mode[
-        filtered_mode["mode"].astype(str) == selected_related_mode
-    ].copy()
-
-    other_reason_counts = pd.DataFrame(columns=["Recorded Reason", "Count"])
-
-    if "reason" in selected_mode_rows.columns:
-        split_mode_reasons = (
-            selected_mode_rows["reason"]
-            .dropna()
-            .astype(str)
-            .str.split(",")
-            .explode()
-            .astype(str)
-            .str.strip()
+        mode_options = related_modes["Mode"].dropna().astype(str).unique().tolist() if not related_modes.empty else []
+        selected_related_mode = st.selectbox(
+            "⚙️  Mode",
+            ["Select a mode…"] + sorted(mode_options),
+            key="m_rel_mode_df"
         )
-        split_mode_reasons = split_mode_reasons[split_mode_reasons != ""]
 
-        if not split_mode_reasons.empty:
-            other_reason_counts = split_mode_reasons.value_counts().reset_index()
-            other_reason_counts.columns = ["Recorded Reason", "Count"]
-
-    if not other_reason_counts.empty:
-        card_cols = st.columns(3)
-        for idx, row in other_reason_counts.iterrows():
-            col = card_cols[idx % 3]
-            with col:
-                st.markdown(
-                    f"""
-                    <div class="mode-card">
-                        <div class="mode-card-title">{row['Recorded Reason']}</div>
-                        <div class="mode-card-meta">Count: {int(row['Count'])}</div>
-                    </div>
-                    """,
-                    unsafe_allow_html=True
+        if selected_related_mode != "Select a mode…":
+            sel_mode_rows = filtered_mode[filtered_mode["mode"].astype(str) == selected_related_mode].copy()
+            if "reason" in sel_mode_rows.columns:
+                other_reasons = (
+                    sel_mode_rows["reason"].dropna().astype(str).str.split(",")
+                    .explode().astype(str).str.strip()
                 )
-    else:
-        st.info("No other recorded reasons found for this mode.")
+                other_reasons = other_reasons[other_reasons != ""]
+                if not other_reasons.empty:
+                    orc = other_reasons.value_counts().reset_index()
+                    orc.columns = ["Recorded Reason", "Count"]
+                    st.dataframe(orc, use_container_width=True, height=260, hide_index=True)
+                else:
+                    st.info("No other recorded reasons.")
+        else:
+            st.info("Select a mode from Step 1 to inspect.")
+
 else:
-    st.info("Select one mode above to see what else it is able to detect.")
+    with step_l:
+        st.markdown("**Step 1 — Choose a mode**")
+
+        selected_mode_first = st.selectbox(
+            "⚙️  Mode",
+            ["Select a mode…"] + available_mode_items,
+            key="m_mode_md",
+        )
+
+        related_defects = pd.DataFrame()
+        if selected_mode_first != "Select a mode…":
+            sel_rows = filtered_mode[filtered_mode["mode"].astype(str) == selected_mode_first].copy()
+            if "reason" in sel_rows.columns:
+                rd = (
+                    sel_rows["reason"].dropna().astype(str).str.split(",")
+                    .explode().astype(str).str.strip()
+                )
+                rd = rd[rd != ""]
+                if not rd.empty:
+                    related_defects = rd.value_counts().reset_index()
+                    related_defects.columns = ["Defect / Reason", "Count"]
+
+        if not related_defects.empty:
+            st.dataframe(related_defects, use_container_width=True, height=260, hide_index=True)
+        elif selected_mode_first != "Select a mode…":
+            st.info("No defects logged against this mode for the current selection.")
+        else:
+            st.info("Pick a mode to see which defects it captures.")
+
+    with step_r:
+        st.markdown("**Step 2 — Pick a defect → see all modes that detect it**")
+
+        defect_options = related_defects["Defect / Reason"].astype(str).tolist() if not related_defects.empty else []
+        selected_defect_md = st.selectbox(
+            "🐛  Defect / Reason",
+            ["Select a defect…"] + defect_options,
+            key="m_defect_md"
+        )
+
+        if selected_defect_md != "Select a defect…":
+            rdf = filtered_mode.copy()
+            rdf["reason_item"] = rdf["reason"].fillna("").astype(str).str.split(",")
+            rdf = rdf.explode("reason_item")
+            rdf["reason_item"] = rdf["reason_item"].astype(str).str.strip()
+            rdf = rdf[rdf["reason_item"] == selected_defect_md].copy()
+
+            if not rdf.empty:
+                rows = []
+                for keys, grp in rdf.groupby(["mode", "check_class"], dropna=False):
+                    _, allb = summarize_boundaries(grp["boundary_after"]) if "boundary_after" in grp.columns else ("", "")
+                    rows.append({
+                        "Mode": keys[0],
+                        "Check Class": keys[1],
+                        "Boundaries": allb,
+                        "Count": len(grp),
+                    })
+                rdf_table = pd.DataFrame(rows).sort_values("Count", ascending=False)
+                st.dataframe(rdf_table, use_container_width=True, height=260, hide_index=True)
+            else:
+                st.info("No modes found for this defect.")
+        else:
+            st.info("Select a defect from Step 1 to inspect.")
 
 st.markdown("---")
 
 # ============================================================
-# STEP 3
+# STEP 3 — GROWER COMPLETION
 # ============================================================
 section_title("Step 3 — Review unchecked modes for this grower")
 
@@ -848,8 +945,8 @@ next_modes_table = pd.DataFrame(
         "Check",
         "Mode",
         "Check Class",
-        "Count",
         "Reference Boundaries",
+        "Count",
         "Sensitivity",
         "Accuracy"
     ]
@@ -874,7 +971,7 @@ if selected_mode_variety != "All varieties" and selected_mode_grower != "All gro
             if (mode_name, check_class) in checked_pairs:
                 continue
 
-            _, allb = summarize_boundaries(grp["boundary_after"]) if "boundary_after" in grp.columns else ("", "")
+            _, ref_b = summarize_boundaries(grp["boundary_after"]) if "boundary_after" in grp.columns else ("", "")
 
             sensitivity_text = ""
             if "sensitivity" in grp.columns:
@@ -890,8 +987,8 @@ if selected_mode_variety != "All varieties" and selected_mode_grower != "All gro
                 "Check": False,
                 "Mode": mode_name,
                 "Check Class": check_class,
+                "Reference Boundaries": ref_b,
                 "Count": len(grp),
-                "Reference Boundaries": allb,
                 "Sensitivity": sensitivity_text,
                 "Accuracy": accuracy_text
             })
@@ -912,7 +1009,16 @@ elif not next_modes_table.empty:
         height=300,
         hide_index=True,
         column_config={"Check": st.column_config.CheckboxColumn("Check")},
-        disabled=["Mode", "Check Class", "Count", "Reference Boundaries", "Sensitivity", "Accuracy"]
+        column_order=["Check", "Mode", "Check Class", "Reference Boundaries", "Count", "Sensitivity", "Accuracy"],
+        disabled=["Mode", "Check Class", "Reference Boundaries", "Count", "Sensitivity", "Accuracy"],
+        key="unchecked_mode_editor"
     )
 else:
     st.info("No additional unchecked modes found for this grower under the selected variety/version.")
+
+with st.expander("View dataset scopes"):
+    st.write("Exact selection preview")
+    st.dataframe(filtered_mode.head(10), use_container_width=True)
+
+    st.write("Reference pool preview")
+    st.dataframe(variety_pool.head(10), use_container_width=True)
