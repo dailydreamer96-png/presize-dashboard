@@ -20,27 +20,42 @@ def ensure_datetime(df, col):
 def apply_dashboard_style():
     st.markdown("""
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;600;700&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap');
 
       :root {
-        --bg:        #0f1117;
-        --surface:   #181c27;
-        --border:    #252a3a;
-        --amber:     #f5a623;
-        --emerald:   #34d399;
-        --rose:      #fb7185;
-        --slate:     #94a3b8;
-        --white:     #e8eaf2;
+        --blue:       #1E90FF;
+        --blue-dk:    #1270cc;
+        --blue-lt:    #1b2638;
+        --blue-md:    #60a5fa;
+
+        --bg:         #141922;
+        --surface:    #1b2230;
+        --surface2:   #20293a;
+        --sidebar-bg: #111827;
+
+        --border:     #2a3448;
+        --border-strong: #38455f;
+
+        --emerald:    #34d399;
+        --emerald-lt: #064e3b;
+        --rose:       #fb7185;
+        --rose-lt:    #4c0519;
+
+        --ink:        #e8eaf2;
+        --ink-mid:    #cbd5e1;
+        --ink-soft:   #94a3b8;
+        --ink-faint:  #64748b;
       }
 
-      html, body, [data-testid="stAppViewContainer"] {
+      html, body, [data-testid="stAppViewContainer"], [data-testid="stMain"] {
         background: var(--bg) !important;
-        color: var(--white) !important;
-        font-family: 'Sora', sans-serif !important;
+        color: var(--ink) !important;
+        font-family: 'Inter', sans-serif !important;
       }
 
       [data-testid="stHeader"] {
         background: transparent !important;
+        box-shadow: none !important;
       }
 
       .block-container {
@@ -51,135 +66,198 @@ def apply_dashboard_style():
       }
 
       section[data-testid="stSidebar"] {
-        background-color: #0f172a;
+        background: var(--sidebar-bg) !important;
       }
 
       section[data-testid="stSidebar"] * {
-        color: #e5e7eb !important;
+        color: #c8d8f0 !important;
       }
 
-      [data-testid="stSelectbox"] label,
-      [data-testid="stRadio"] label,
-      .stSelectbox label {
-        color: var(--slate) !important;
-        font-size: 0.72rem !important;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
+      [data-testid="stSidebar"] h2,
+      [data-testid="stSidebar"] h3 {
+        color: #ffffff !important;
+        font-size: 0.85rem !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.06em !important;
+        text-transform: uppercase !important;
       }
 
-      [data-testid="stSelectbox"] > div > div {
-        background: var(--surface) !important;
-        border: 1px solid var(--border) !important;
-        border-radius: 6px !important;
-        color: var(--white) !important;
+      [data-testid="stSidebar"] [data-testid="stSelectbox"] label,
+      [data-testid="stSidebar"] [data-testid="stRadio"] label {
+        color: #7a9fc8 !important;
+        font-size: 0.68rem !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.06em !important;
+        text-transform: uppercase !important;
+      }
+
+      [data-testid="stSidebar"] [data-testid="stSelectbox"] > div > div {
+        background: #1e2f55 !important;
+        border: 1px solid #2e4070 !important;
+        border-radius: 8px !important;
+        color: #e0eaf8 !important;
+        font-size: 0.85rem !important;
+      }
+
+      [data-testid="stSidebar"] [data-testid="stRadio"] > div > label {
+        background: #1e2f55 !important;
+        border: 1px solid #2e4070 !important;
+        border-radius: 8px !important;
+        color: #c8d8f0 !important;
+        font-size: 0.82rem !important;
+        font-weight: 500 !important;
+        padding: 8px 14px !important;
+        transition: all 0.15s;
+      }
+
+      [data-testid="stSidebar"] [data-testid="stRadio"] > div > label:has(input:checked) {
+        background: var(--blue) !important;
+        border-color: var(--blue-dk) !important;
+        color: #ffffff !important;
+        font-weight: 600 !important;
       }
 
       [data-testid="stDataFrame"] {
         background: var(--surface) !important;
-        border-radius: 8px !important;
+        border-radius: 10px !important;
         border: 1px solid var(--border) !important;
         overflow: hidden;
       }
 
+      [data-testid="stDataFrame"] th {
+        background: #111827 !important;
+        color: #ffffff !important;
+        font-weight: 700 !important;
+        font-size: 0.75rem !important;
+      }
+
+      [data-testid="stDataFrame"] td {
+        color: var(--ink) !important;
+      }
+
       h1, h2, h3 {
         letter-spacing: -0.02em;
+        color: var(--ink) !important;
+      }
+
+      .page-header {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 24px 28px;
+        margin-bottom: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.14);
+      }
+
+      .page-header-left {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .page-header h1 {
+        font-family: 'Inter', sans-serif !important;
+        font-size: 1.9rem !important;
+        font-weight: 800 !important;
+        color: #ffffff !important;
+        margin: 0 !important;
+        letter-spacing: -0.03em !important;
+        line-height: 1.1 !important;
+      }
+
+      .page-header h1 span {
+        color: var(--blue) !important;
+      }
+
+      .page-header .subtitle {
+        font-size: 0.98rem !important;
+        color: #b8cce8 !important;
+        margin: 0 !important;
+        font-weight: 400 !important;
+      }
+
+      .page-header-right {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 6px;
+      }
+
+      .header-badge {
+        background: var(--blue) !important;
+        color: #ffffff !important;
+        font-family: 'DM Mono', monospace !important;
+        font-size: 0.75rem !important;
+        font-weight: 600 !important;
+        padding: 5px 14px !important;
+        border-radius: 20px !important;
+        letter-spacing: 0.06em !important;
+      }
+
+      .header-meta {
+        font-family: 'DM Mono', monospace !important;
+        font-size: 0.75rem !important;
+        color: #b8cce8 !important;
       }
 
       .section-title {
-        font-size: 0.68rem;
-        font-weight: 600;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--amber);
-        margin-bottom: 10px;
-        border-bottom: 1px solid var(--border);
-        padding-bottom: 6px;
+        font-size: 0.85rem !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.06em !important;
+        text-transform: uppercase !important;
+        color: var(--ink) !important;
+        margin-bottom: 14px !important;
+        padding-bottom: 8px !important;
+        border-bottom: 3px solid var(--blue) !important;
+        display: inline-block !important;
       }
 
       .kpi-card {
         background: var(--surface);
         border: 1px solid var(--border);
-        border-top: 3px solid var(--amber);
-        border-radius: 8px;
+        border-left: 5px solid var(--blue);
+        border-radius: 10px;
         padding: 18px 22px;
         margin-bottom: 10px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.12);
       }
 
       .kpi-label {
-        font-size: 0.65rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: var(--slate);
-        margin-bottom: 4px;
+        font-size: 0.72rem !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.06em !important;
+        color: var(--ink-soft) !important;
+        margin-bottom: 7px !important;
       }
 
       .kpi-value {
-        font-family: 'DM Mono', monospace;
-        font-size: 1.6rem;
-        font-weight: 500;
-        color: var(--white);
+        font-family: 'DM Mono', monospace !important;
+        font-size: 1.75rem !important;
+        font-weight: 500 !important;
+        color: var(--ink) !important;
+        line-height: 1.2 !important;
       }
 
       .kpi-delta {
-        font-family: 'DM Mono', monospace;
-        font-size: 0.7rem;
-        margin-top: 4px;
+        font-family: 'DM Mono', monospace !important;
+        font-size: 0.72rem !important;
+        margin-top: 6px !important;
       }
 
       .kpi-delta.up { color: var(--emerald); }
       .kpi-delta.down { color: var(--rose); }
-      .kpi-delta.neu { color: var(--slate); }
+      .kpi-delta.neu { color: var(--ink-faint); }
 
-      .page-header {
-        display: flex;
-        align-items: baseline;
-        gap: 16px;
-        margin-bottom: 20px;
-        border-bottom: 1px solid var(--border);
-        padding-bottom: 14px;
-      }
-
-      .page-header h1 {
-        font-family: 'Sora', sans-serif;
-        font-size: 1.35rem;
-        font-weight: 700;
-        color: var(--white);
-        margin: 0;
-        letter-spacing: -0.01em;
-      }
-
-      .page-header span {
-        font-family: 'DM Mono', monospace;
-        font-size: 0.7rem;
-        color: var(--slate);
+      hr {
+        border-color: var(--border) !important;
+        margin: 1.4rem 0 !important;
       }
     </style>
     """, unsafe_allow_html=True)
-
-
-AMBER = "#f5a623"
-EMERALD = "#34d399"
-ROSE = "#fb7185"
-BLUE = "#60a5fa"
-PURPLE = "#a78bfa"
-COLOR_SEQ = [AMBER, BLUE, EMERALD, PURPLE, ROSE, "#f9a8d4", "#fcd34d", "#6ee7b7"]
-
-PLOT_LAYOUT = dict(
-    paper_bgcolor="rgba(0,0,0,0)",
-    plot_bgcolor="#181c27",
-    font=dict(family="DM Mono, monospace", color="#94a3b8", size=11),
-    title_font=dict(family="Sora, sans-serif", color="#e8eaf2", size=13),
-    xaxis=dict(gridcolor="#252a3a", linecolor="#252a3a", tickfont=dict(size=10)),
-    yaxis=dict(gridcolor="#252a3a", linecolor="#252a3a", tickfont=dict(size=10)),
-    margin=dict(l=20, r=20, t=44, b=20),
-    hovermode="x unified",
-    legend=dict(bgcolor="rgba(0,0,0,0)", font=dict(size=10)),
-)
-
-
-def apply_plot_theme(fig, height=380):
-    fig.update_layout(**PLOT_LAYOUT, height=height)
-    return fig
 
 
 def section_title(title: str):
@@ -189,15 +267,12 @@ def section_title(title: str):
 def format_delta(current, previous, mode="number"):
     if pd.isna(current) or pd.isna(previous):
         return "N/A"
-
     if mode == "percent":
         if previous == 0:
             return "N/A"
         return f"{((current - previous) / previous) * 100:+.1f}% vs prev"
-
     if mode == "float":
         return f"{current - previous:+.1f} vs prev"
-
     return f"{int(current - previous):+,.0f} vs prev"
 
 
@@ -212,12 +287,34 @@ def kpi_html(label, value, delta="", direction="neu"):
     """
 
 
+BLUE = "#1E90FF"
+EMERALD = "#34d399"
+ROSE = "#fb7185"
+COLOR_SEQ = [BLUE, "#60a5fa", "#38bdf8", "#818cf8", "#34d399", "#f472b6"]
+
+PLOT_LAYOUT = dict(
+    paper_bgcolor="rgba(0,0,0,0)",
+    plot_bgcolor="#1b2230",
+    font=dict(family="Inter, sans-serif", color="#94a3b8", size=12),
+    title_font=dict(family="Inter, sans-serif", color="#e8eaf2", size=14),
+    xaxis=dict(gridcolor="#2a3448", linecolor="#2a3448", tickfont=dict(size=11), tickcolor="#64748b"),
+    yaxis=dict(gridcolor="#2a3448", linecolor="#2a3448", tickfont=dict(size=11), tickcolor="#64748b"),
+    margin=dict(l=20, r=20, t=44, b=20),
+    hovermode="x unified",
+    legend=dict(bgcolor="rgba(0,0,0,0)", font=dict(size=11, color="#cbd5e1")),
+)
+
+
+def apply_plot_theme(fig, height=380):
+    fig.update_layout(**PLOT_LAYOUT, height=height)
+    return fig
+
+
 # ============================================================
 # PREP
 # ============================================================
 runs = ensure_datetime(runs, "run_date")
 downtime = ensure_datetime(downtime, "run_date")
-
 apply_dashboard_style()
 
 latest_date = pd.NaT
@@ -229,8 +326,14 @@ date_str = latest_date.strftime("%d %b %Y") if pd.notna(latest_date) else "N/A"
 st.markdown(
     f"""
     <div class="page-header">
-      <h1>🍎 Presizing Operations</h1>
-      <span>Updated {date_str} · {len(runs):,} runs recorded</span>
+      <div class="page-header-left">
+        <h1>🍎 Presizing <span>Operations</span></h1>
+        <p class="subtitle">Production summary · throughput · variety and downtime overview</p>
+      </div>
+      <div class="page-header-right">
+        <span class="header-badge">SUMMARY</span>
+        <span class="header-meta">Updated {date_str} · {len(runs):,} runs recorded</span>
+      </div>
     </div>
     """,
     unsafe_allow_html=True,
@@ -243,11 +346,14 @@ summary_df = summary_df.dropna(subset=["run_date"]).copy()
 # SIDEBAR FILTERS
 # ============================================================
 with st.sidebar:
-    st.header("Summary Filters")
+    st.markdown("### 📊 Summary")
+    st.markdown("#### Filters")
 
     period_choice = st.radio(
-        "Period Type",
-        ["Yearly", "Monthly", "Weekly"]
+        "View by",
+        ["Monthly", "Yearly", "Weekly"],
+        index=0,
+        key="summary_period_choice",
     )
 
     selected_year = None
@@ -260,7 +366,7 @@ with st.sidebar:
     if period_choice == "Yearly":
         summary_df["year"] = summary_df["run_date"].dt.year.astype(int)
         available_years = sorted(summary_df["year"].dropna().unique().tolist(), reverse=True)
-        selected_year = st.selectbox("Select Year", available_years)
+        selected_year = st.selectbox("Year", available_years, key="summary_year_y")
 
     elif period_choice == "Monthly":
         summary_df["year"] = summary_df["run_date"].dt.year.astype(int)
@@ -269,7 +375,7 @@ with st.sidebar:
         summary_df["month_label"] = summary_df["run_date"].dt.to_period("M").astype(str)
 
         available_years = sorted(summary_df["year"].dropna().unique().tolist(), reverse=True)
-        selected_year = st.selectbox("Select Year", available_years)
+        selected_year = st.selectbox("Year", available_years, key="summary_year_m")
 
         year_df_sidebar = summary_df[summary_df["year"] == selected_year].copy()
         available_months = (
@@ -279,7 +385,7 @@ with st.sidebar:
             .sort_values()
             .tolist()
         )
-        selected_month = st.selectbox("Select Month", ["All"] + available_months)
+        selected_month = st.selectbox("Month", ["All"] + available_months, key="summary_month_m")
 
     else:
         summary_df["month_label"] = summary_df["run_date"].dt.to_period("M").astype(str)
@@ -295,7 +401,7 @@ with st.sidebar:
             .sort_values()
             .tolist()
         )
-        selected_month = st.selectbox("Select Month", ["All"] + available_months)
+        selected_month = st.selectbox("Month", ["All"] + available_months, key="summary_month_w")
 
         if selected_month == "All":
             month_df_sidebar = summary_df.copy()
@@ -308,7 +414,7 @@ with st.sidebar:
             .sort_values("week_start")["week_label"]
             .tolist()
         )
-        selected_week = st.selectbox("Select Week", ["All"] + available_weeks)
+        selected_week = st.selectbox("Week", ["All"] + available_weeks, key="summary_week_w")
 
 # ============================================================
 # MAIN FILTERED DATA
@@ -437,26 +543,14 @@ if downtime is not None and "run_date" in downtime.columns:
             ].copy() if prev_week else pd.DataFrame()
 
     downtime_filtered = current_dt_filtered.copy()
-    current_downtime = (
-        current_dt_filtered["duration_hours"].sum()
-        if "duration_hours" in current_dt_filtered.columns else None
-    )
-    prev_downtime = (
-        prev_dt_filtered["duration_hours"].sum()
-        if "duration_hours" in prev_dt_filtered.columns and not prev_dt_filtered.empty else None
-    )
+    current_downtime = current_dt_filtered["duration_hours"].sum() if "duration_hours" in current_dt_filtered.columns else None
+    prev_downtime = prev_dt_filtered["duration_hours"].sum() if "duration_hours" in prev_dt_filtered.columns and not prev_dt_filtered.empty else None
 
 # ============================================================
 # KPI VALUES
 # ============================================================
-current_total_bins = (
-    summary_filtered["bins_run"].sum()
-    if "bins_run" in summary_filtered.columns else None
-)
-prev_total_bins = (
-    previous_filtered["bins_run"].sum()
-    if "bins_run" in previous_filtered.columns and not previous_filtered.empty else None
-)
+current_total_bins = summary_filtered["bins_run"].sum() if "bins_run" in summary_filtered.columns else None
+prev_total_bins = previous_filtered["bins_run"].sum() if "bins_run" in previous_filtered.columns and not previous_filtered.empty else None
 
 current_bins_per_hour = None
 prev_bins_per_hour = None
@@ -467,24 +561,14 @@ if "total_bins_with_retip" in summary_filtered.columns and "run_hours" in summar
     if pd.notna(current_total_hours) and current_total_hours > 0:
         current_bins_per_hour = current_total_bins_for_speed / current_total_hours
 
-if (
-    not previous_filtered.empty
-    and "total_bins_with_retip" in previous_filtered.columns
-    and "run_hours" in previous_filtered.columns
-):
+if not previous_filtered.empty and "total_bins_with_retip" in previous_filtered.columns and "run_hours" in previous_filtered.columns:
     prev_total_hours = previous_filtered["run_hours"].sum()
     prev_total_bins_for_speed = previous_filtered["total_bins_with_retip"].sum()
     if pd.notna(prev_total_hours) and prev_total_hours > 0:
         prev_bins_per_hour = prev_total_bins_for_speed / prev_total_hours
 
-current_retip = (
-    summary_filtered["retip"].sum()
-    if "retip" in summary_filtered.columns else None
-)
-prev_retip = (
-    previous_filtered["retip"].sum()
-    if "retip" in previous_filtered.columns and not previous_filtered.empty else None
-)
+current_retip = summary_filtered["retip"].sum() if "retip" in summary_filtered.columns else None
+prev_retip = previous_filtered["retip"].sum() if "retip" in previous_filtered.columns and not previous_filtered.empty else None
 
 retip_rate = None
 if pd.notna(current_retip) and pd.notna(current_total_bins) and (current_total_bins + current_retip) > 0:
@@ -572,7 +656,7 @@ with main_left:
     section_title("Throughput Trend")
 
     if period_choice == "Yearly":
-        fig = px.bar(chart_df, x="year", y="bins_run", color_discrete_sequence=[AMBER])
+        fig = px.bar(chart_df, x="year", y="bins_run", color_discrete_sequence=[BLUE])
         fig.update_xaxes(type="category")
     elif period_choice == "Monthly":
         fig = px.line(
@@ -582,12 +666,12 @@ with main_left:
             color="year",
             markers=True,
             color_discrete_sequence=COLOR_SEQ,
-            category_orders={"month_name": ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]},
+            category_orders={"month_name": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]},
         )
     else:
-        fig = px.bar(chart_df, x="week_label", y="bins_run", color_discrete_sequence=[AMBER])
+        fig = px.bar(chart_df, x="week_label", y="bins_run", color_discrete_sequence=[BLUE])
 
-    fig.update_traces(hovertemplate="%{y:,.0f} bins")
+    fig.update_traces(hovertemplate="%{y:,.0f} bins<extra></extra>")
     apply_plot_theme(fig, height=380)
     st.plotly_chart(fig, use_container_width=True)
 
@@ -605,7 +689,7 @@ with main_right:
         fig_pie.update_traces(
             textposition="outside",
             textfont_size=10,
-            hovertemplate="%{label}<br>%{value:,.0f} bins (%{percent})"
+            hovertemplate="%{label}<br>%{value:,.0f} bins (%{percent})<extra></extra>"
         )
         apply_plot_theme(fig_pie, height=340)
         fig_pie.update_layout(showlegend=True, legend=dict(orientation="v", x=1, y=0.5))
@@ -671,6 +755,7 @@ if "bins_per_hour_row" in summary_filtered.columns:
         }))
         .dropna(subset=["bins_per_hour"])
         .sort_values("bins_per_hour", ascending=True)
+        .reset_index(drop=True)
     )
 
     if not bph_grower.empty:
@@ -681,7 +766,7 @@ if "bins_per_hour_row" in summary_filtered.columns:
             y="grower",
             orientation="h",
             color="bins_per_hour",
-            color_continuous_scale=["#1e2435", AMBER],
+            color_continuous_scale=["#1e2435", BLUE],
             labels={"bins_per_hour": "Bins/hr", "grower": "Grower"},
         )
         if pd.notna(overall_bph):
@@ -693,7 +778,7 @@ if "bins_per_hour_row" in summary_filtered.columns:
                 annotation_font_color=ROSE,
             )
         fig_bph.update_coloraxes(showscale=False)
-        fig_bph.update_traces(hovertemplate="%{x:.1f} bins/hr")
+        fig_bph.update_traces(hovertemplate="%{x:.1f} bins/hr<extra></extra>")
         apply_plot_theme(fig_bph, height=max(280, len(bph_grower) * 32))
         st.plotly_chart(fig_bph, use_container_width=True)
 
@@ -757,7 +842,7 @@ with vl:
             color_discrete_sequence=[BLUE],
             labels={"total_bins": "Total Bins", "grower": "Grower"},
         )
-        fig_vg.update_traces(hovertemplate="%{x:,.0f} bins")
+        fig_vg.update_traces(hovertemplate="%{x:,.0f} bins<extra></extra>")
         apply_plot_theme(fig_vg, height=max(240, len(bins_by_grower_variety) * 36))
         st.plotly_chart(fig_vg, use_container_width=True)
 
@@ -802,10 +887,10 @@ with dm:
                 area_hrs,
                 x="downtime_area",
                 y="duration_hours",
-                color_discrete_sequence=[ROSE],
+                color_discrete_sequence=[BLUE],
                 labels={"downtime_area": "Area", "duration_hours": "Hours"},
             )
-            fig_dt.update_traces(hovertemplate="%{y:.2f} hrs")
+            fig_dt.update_traces(hovertemplate="%{y:.2f} hrs<extra></extra>")
             apply_plot_theme(fig_dt, height=260)
             st.plotly_chart(fig_dt, use_container_width=True)
 
